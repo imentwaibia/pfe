@@ -19,7 +19,10 @@ import InboxIcon from "@material-ui/icons/MoveToInbox";
 import FormatListBulletedIcon from "@material-ui/icons/FormatListBulleted";
 import { Link } from "react-router-dom";
 import SimpleMenu from "./NavBarMenu";
+import {Navbar,Container,Nav,NavDropdown  } from "react-bootstrap";
 import DashboardIcon from '@material-ui/icons/Dashboard';
+
+
 
 
 const drawerWidth = 240;
@@ -113,10 +116,24 @@ export default function NavBar(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
-            Admin
-          </Typography>
-          <SimpleMenu />
+          <Navbar bg="light" expand="lg" >
+  <Container>
+   
+    
+      <Nav className="me-auto" margin="left">
+        <NavDropdown title="Administrateur" id="basic-nav-dropdown">
+          <NavDropdown.Item>Liste des jardins</NavDropdown.Item>
+          <NavDropdown.Item >Liste des parents</NavDropdown.Item>
+          <NavDropdown.Item >Réclammations</NavDropdown.Item>
+          <NavDropdown.Divider />
+          <NavDropdown.Item >Déconnecter</NavDropdown.Item>
+        </NavDropdown>
+      </Nav>
+   
+  </Container>
+</Navbar>
+          
+       
         </Toolbar>
       </AppBar>
       <Drawer
@@ -145,7 +162,7 @@ export default function NavBar(props) {
                 {" "}
                 <DashboardIcon style={{ color: "#039be5" }} />
               </ListItemIcon>
-              <ListItemText primary="Dashboard" />
+              <ListItemText primary="Accueil" />
             </ListItem>
           </Link>
           <Link to="/Confirm-inscription" style={{textDecoration:'none',color:"black"}}>
@@ -164,7 +181,7 @@ export default function NavBar(props) {
                 {" "}
                 <DashboardIcon style={{ color: "#039be5" }} />
               </ListItemIcon>
-              <ListItemText primary="Listes jardins" />
+              <ListItemText primary="Liste des jardins" />
             </ListItem>
           </Link>
           <Link to="/List-parent" style={{textDecoration:'none',color:"black"}}>
@@ -173,11 +190,10 @@ export default function NavBar(props) {
                 {" "}
                 <DashboardIcon style={{ color: "#039be5" }} />
               </ListItemIcon>
-              <ListItemText primary="Listes parents" />
+              <ListItemText primary="Liste des parents" />
             </ListItem>
           </Link>
-          
-          
+         
         </List>
         <Divider />
       </Drawer>
@@ -189,6 +205,8 @@ export default function NavBar(props) {
         <div className={classes.drawerHeader} />
         {props.content}
       </main>
+      
+      
     </div>
   );
 }

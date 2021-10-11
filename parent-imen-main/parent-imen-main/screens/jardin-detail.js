@@ -28,7 +28,7 @@ const JardinDetail = (props) => {
     wait(2000).then(() => setRefreshing(false));
     const sendRequest = async () => {
       const response = await fetch(
-        `http://192.168.0.103:5000/api/jardin/${id}`
+        `http://192.168.0.107:5000/api/jardin/${id}`
       );
 
       const responseData = await response.json();
@@ -46,7 +46,7 @@ const JardinDetail = (props) => {
   useEffect(() => {
     const sendRequest = async () => {
       const response = await fetch(
-        `http://192.168.0.103:5000/api/jardin/${id}`
+        `http://192.168.0.107:5000/api/jardin/${id}`
       );
 
       const responseData = await response.json();
@@ -66,7 +66,7 @@ const JardinDetail = (props) => {
     setLoading(true);
 
     let response = await fetch(
-      "http://192.168.0.103:5000/api/parent/inscription",
+      "http://192.168.0.107:5000/api/parent/inscription",
       {
         method: "POST",
         headers: {
@@ -100,7 +100,7 @@ const JardinDetail = (props) => {
         {list && (
           <View>
             <Image
-              source={{ uri: `http://192.168.0.103:5000/${list.logo}` }}
+              source={{ uri: `http://192.168.0.107:5000/${list.logo}` }}
               style={styles.image}
             />
             <View style={styles.details}>

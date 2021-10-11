@@ -7,7 +7,7 @@ const { validationResult } = require("express-validator");
 const jwt = require("jsonwebtoken");
 
 const nodemailer = require("nodemailer");
-// configurer nodemailer
+
 const log = console.log;
 let transporter = nodemailer.createTransport({
   service: "gmail",
@@ -280,19 +280,19 @@ const ConfirmeJardin = async (req, res, next) => {
   } catch {
     return next(new httpError("failed to save ", 500));
   }
-// envoi mail
+
   let mailOptions = {
     from: "twaibia.imen@gmail.com", // TODO: email sender
-    to: email, // TODO: email receiver
+    to:'email', // TODO: email receiver
     subject: "Confirmation de creation de compte",
     text: "Votre Compte est bien confirmer",
   };
-// envoi un courrier et recevoir un message
+
   transporter.sendMail(mailOptions, (err, data) => {
     if (err) {
-      return log("Error occurs");
+      console.log('Error occurs',err);
     }
-    return log("Email sent!!!");
+    console.log('Email sent!!!');
   });
 
   res.status(200).json({ existingJardin: existingJardin });

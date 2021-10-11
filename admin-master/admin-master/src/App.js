@@ -18,7 +18,7 @@ import { UserAuth } from "./hooks/auth";
 import { Authcontext } from "./context/auth-context";
 import Login from "./views/login";
 import NavBar from "./components/nav-bar";
-import ChartsPage from "./views/chart";
+//import ChartsPage from "./views/chart";
 import ConfirmationInscription from "./views/jardin/confirmation-inscription";
 import ListJardin from "./views/jardin/list";
 import ListEnfants from "./views/jardin/list-enfants";
@@ -32,7 +32,7 @@ function App() {
   if (token) {
     routes = (
       <React.Fragment>
-        <Route exact path="/" component={ChartsPage} />
+        
         <Route path="/Confirm-inscription" component={ConfirmationInscription} />
         <Route path="/List-jardin" component={ListJardin} />
         <Route path="/List-enfant/:id" component={ListEnfants} />

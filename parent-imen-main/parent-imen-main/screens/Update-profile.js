@@ -44,7 +44,7 @@ const UpdateProfile = (props) => {
 
   const submit = async () => {
     let response = await fetch(
-      `http://192.168.0.103:5000/api/parent/${auth.userId}`,
+      `http://192.168.0.107:5000/api/parent/${auth.userId}`,
       {
         method: "Patch",
         headers: {
