@@ -45,7 +45,7 @@ export default function HeaderLinks(props) {
       <ListItem className={classes.listItem}>
         <Button color="transparent" target="_blank">
           <Link
-            to="/"
+            to="/ListJardin"
             className={classes.navLink}
             style={{ marginTop: "-17px" }}
           >
@@ -67,9 +67,14 @@ export default function HeaderLinks(props) {
               <Link to="/login-page" className={classes.dropdownLink}>
                Accées jardin
               </Link>,
+              
+              <Link to="/login" className={classes.dropdownLink}>
+              Accées admin
+             </Link>,
             ]}
           />
         </ListItem>
+        
       )}
 
       {auth.token && (

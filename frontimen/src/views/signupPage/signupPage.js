@@ -22,7 +22,7 @@ import { Form, Image } from "react-bootstrap";
 
 import styles from "assets/jss/material-kit-react/views/loginPage.js";
 
-import image from "assets/img/bg7.jpg";
+import image from "assets/img/img1.jpg";
 import { Authcontext } from "../../context/auth-context";
 import ErrorModel from "../../models/error-model";
 import SuccessModel from "../../models/success-model";
@@ -150,36 +150,8 @@ export default function SignupPage(props) {
               <Card className={classes[cardAnimaton]}>
                 <form className={classes.form} onSubmit={submit}>
                   <CardHeader color="primary" className={classes.cardHeader}>
-                    <h4>Signup</h4>
-                    <div className={classes.socialLine}>
-                      <Button
-                        justIcon
-                        href="#pablo"
-                        target="_blank"
-                        color="transparent"
-                        onClick={(e) => e.preventDefault()}
-                      >
-                        <i className={"fab fa-twitter"} />
-                      </Button>
-                      <Button
-                        justIcon
-                        href="#pablo"
-                        target="_blank"
-                        color="transparent"
-                        onClick={(e) => e.preventDefault()}
-                      >
-                        <i className={"fab fa-facebook"} />
-                      </Button>
-                      <Button
-                        justIcon
-                        href="#pablo"
-                        target="_blank"
-                        color="transparent"
-                        onClick={(e) => e.preventDefault()}
-                      >
-                        <i className={"fab fa-google-plus-g"} />
-                      </Button>
-                    </div>
+                    <h4>Inscription</h4>
+                    
                   </CardHeader>
                   <ErrorModel error={error} />
                   <SuccessModel success={success} />
@@ -265,7 +237,7 @@ export default function SignupPage(props) {
                         endAdornment: (
                           <InputAdornment position="end">
                             <Icon className={classes.inputIconsColor}>
-                              lock_outline
+                              
                             </Icon>
                           </InputAdornment>
                         ),

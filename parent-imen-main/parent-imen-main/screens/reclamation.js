@@ -26,7 +26,7 @@ const Reclamation = (props) => {
 
   const submit = async () => {
     let response = await fetch(
-      "http://192.168.0.107:5000/api/reclamation/ajout",
+      "http://192.168.43.2:5000/api/reclamation/ajout",
       {
         method: "POST",
         headers: {
@@ -35,7 +35,8 @@ const Reclamation = (props) => {
         body: JSON.stringify({
           sujet: sujet,
           description:description,
-          jardinId:selectedValue
+          jardinId:selectedValue,
+          parentId:auth.userId
         }),
       }
     );
@@ -50,7 +51,7 @@ const Reclamation = (props) => {
     let responsedata = await response.json();
     Alert.alert(
       "Message",
-      "votre demande est enregistrée, vous recevez une réponce bientot",
+      "votre demande est enregistrer, vous recevez une réponce bientot",
       [{ text: "fermer" }]
     );
   };
@@ -59,7 +60,7 @@ const Reclamation = (props) => {
 
   useEffect(() => {
     const sendRequest = async () => {
-      const response = await fetch(`http://192.168.0.107:5000/api/jardin`);
+      const response = await fetch(`http://192.168.43.2:5000/api/jardin`);
 
       const responseData = await response.json();
       if (!response.ok) {

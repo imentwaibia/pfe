@@ -19,7 +19,7 @@ import SectionBasics from "./Sections/SectionBasics.js";
 
 //import SectionNavbars from "./Sections/SectionNavbars.js";
 //import SectionTabs from "./Sections/SectionTabs.js";
-import SectionPills from "./Sections/SectionPills.js";
+//import SectionPills from "./Sections/SectionPills.js";
 //import SectionNotifications from "./Sections/SectionNotifications.js";
 //import SectionTypography from "./Sections/SectionTypography.js";
 //import SectionJavascript from "./Sections/SectionJavascript.js";
@@ -67,18 +67,6 @@ export default function Components(props) {
 
       <div className={classNames(classes.main, classes.mainRaised)}>
         <SectionBasics />
-       
-      
-        <SectionPills />
-       
-        
-        
-        
-        
-        
-        
-      
-        
       </div>
       <Footer />
     </div>

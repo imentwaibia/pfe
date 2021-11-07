@@ -1,5 +1,6 @@
 import { Route, BrowserRouter } from "react-router-dom";
 import { UserAuth } from "./hooks/auth";
+import {IsAuth} from "./hooks/IsAuth"
 import { Authcontext } from "./context/auth-context";
 import Components from "views/Components/Components.js";
 import LandingPage from "views/LandingPage/LandingPage.js";
@@ -19,15 +20,24 @@ import ListeEvenement from "views/evenement/liste-evenement";
 import AjoutEvenement from "views/evenement/ajoutEvenement";
 import UpdateEvenement from "views/evenement/update-evenement";
 import Chat from "views/chat/chat";
+import Profileadmin from "views/adminn/Profileadmin";
+import Confirmeinscription from "views/adminn/jardin/Confirmeinscription";
+import List from "views/adminn/jardin/List";
+import Listenfant from "views/adminn/jardin/Listenfant";
+import Listparent from "views/adminn/parent/Listparent";
+import Listenfantsparent from "views/adminn/parent/Listenfantparent";
+import Reclamation from "views/adminn/Reclamation";
+import ListJardin from "views/Components/Sections/ListJardin";
+import Login from "views/adminn/Login";
+
 
 function App() {
   const { userId, token, login, logout,user } = UserAuth();
-
+  const { AdminId, AdminLogin, AdminLogout, AdminToken,admin } = IsAuth()
   let routes;
   if (token) {
     routes = (
       <React.Fragment>
-        <Route path="/landing-page" component={LandingPage} />
         <Route path="/profile-page" component={ProfilePage} />
         <Route path="/liste-enfants/:id" component={ListEnfant} />
         <Route path="/ajout-enfants/:id" component={AjoutEnfant} />
@@ -44,19 +54,63 @@ function App() {
         <Route path="/" exact component={Components} />
       </React.Fragment>
     );
-  } else {
+    
+  }else if(!token)
+  {
     routes = (
       <React.Fragment>
-        <Route path="/landing-page" component={LandingPage} />
-        <Route path="/login-page" component={LoginPage} />
         <Route path="/signup-page" component={SignupPage} />
+        <Route path="/ListJardin" component={ListJardin} />
+        <Route path="/login-page" exact component={LoginPage} />
         <Route path="/" exact component={Components} />
-      </React.Fragment>
+
+
+        </React.Fragment>
     );
+  }
+   else if(AdminToken) {
+   
+    routes = (
+      <React.Fragment>
+        <Route path="/Profileadmin" component={Profileadmin} />
+        <Route path="/Confirmeinscription" component={Confirmeinscription} />
+        <Route path="/List" component={List} />
+        <Route path="/Listenfant/:id" component={Listenfant} />
+        <Route path="/Listparent" component={Listparent} />
+        <Route path="/Listenfantparent/:id" component={Listenfantsparent} />
+        <Route path="/Reclamation" component={Reclamation} />
+        <Route path="/" exact component={Components} />
+        </React.Fragment>
+    );
+  }else if(!AdminToken)
+  {
+    routes = (
+      <React.Fragment>
+        <Route path="/login" exact component={Login} />
+    <Route path="/" exact component={Components} />
+
+    </React.Fragment>
+    );
+  }
+  else{
+    routes = (
+      <Route path="/" exact component={Components} />
+    )
   }
   return (
     <Authcontext.Provider
-      value={{ userId: userId, token: token, login: login, logout: logout,user:user }}
+      value={{ 
+        userId: userId,
+         token: token, 
+        login: login, 
+        logout: logout,
+        user:user,
+        AdminId: AdminId,
+        AdminToken: AdminToken,
+        admin:admin,
+        AdminLogin: AdminLogin,
+        AdminLogout: AdminLogout
+      }}
     >
       <BrowserRouter>{routes}</BrowserRouter>
     </Authcontext.Provider>

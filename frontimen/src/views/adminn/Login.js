@@ -20,16 +20,14 @@ import CardFooter from "components/Card/CardFooter.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
 
 import styles from "assets/jss/material-kit-react/views/loginPage.js";
-
-import image from "assets/img/img1.jpg";
 import { Authcontext } from "../../context/auth-context";
+import image from "assets/img/img1.jpg";
 import ErrorModel from "../../models/error-model";
 import SuccessModel from "../../models/success-model";
 import { Link } from "react-router-dom";
-
 const useStyles = makeStyles(styles);
 
-export default function LoginPage(props) {
+export default function Login(props) {
   const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
   setTimeout(function () {
     setCardAnimation("");
@@ -48,15 +46,13 @@ export default function LoginPage(props) {
     }
   };
 
-  const auth = useContext(Authcontext);
-
+  const IsAuth = useContext(Authcontext);
   const submit = async (e) => {
     e.preventDefault();
     console.log(email);
     console.log(password);
-
     try {
-      let response = await fetch("http://localhost:5000/api/jardin/login", {
+      let response = await fetch("http://localhost:5000/api/admin/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -68,16 +64,17 @@ export default function LoginPage(props) {
       });
       let responsedata = await response.json();
       if (!response.ok) {
+        seterror(responsedata.message);
         throw new Error(responsedata.message);
       }
 
-      auth.login(responsedata.jardin,responsedata.jardin._id, responsedata.token);
-      window.location.href = "http://localhost:3000";
+    IsAuth.AdminLogin(responsedata.admin,responsedata.admin._id, responsedata.token);
     } catch (err) {
       console.log(err);
       seterror(err.message || "probleme!!");
     }
   };
+    
   const classes = useStyles();
   const { ...rest } = props;
   return (
@@ -104,40 +101,13 @@ export default function LoginPage(props) {
                 <form className={classes.form} onSubmit={submit}>
                   <CardHeader color="primary" className={classes.cardHeader}>
                     <h4>Login</h4>
-                    <div className={classes.socialLine}>
-                      <Button
-                        justIcon
-                        href="#pablo"
-                        target="_blank"
-                        color="transparent"
-                        onClick={(e) => e.preventDefault()}
-                      >
-                        <i className={""} />
-                      </Button>
-                      <Button
-                        justIcon
-                        href="#pablo"
-                        target="_blank"
-                        color="transparent"
-                        onClick={(e) => e.preventDefault()}
-                      >
-                        <i className={""} />
-                      </Button>
-                      <Button
-                        justIcon
-                        href="#pablo"
-                        target="_blank"
-                        color="transparent"
-                        onClick={(e) => e.preventDefault()}
-                      >
-                        <i className={""} />
-                      </Button>
-                    </div>
+                    
                   </CardHeader>
                   <ErrorModel error={error} />
                   <SuccessModel success={success} />
                   <p className={classes.divider}></p>
                   <CardBody>
+                    
                     <CustomInput
                       labelText="Email..."
                       id="email"
@@ -177,15 +147,15 @@ export default function LoginPage(props) {
                     />
                   </CardBody>
                   <CardFooter className={classes.cardFooter}>
+                  <Link to="/profileadmin">
                     <Button simple color="primary" size="lg" type="submit">
                       Login
                     </Button>
+                    </Link>
                   </CardFooter>
                 </form>
 
-                <Button simple color="primary" size="lg" type="submit">
-                  <Link to="/signup-page">Crée um compte</Link>
-                </Button>
+                
               </Card>
             </GridItem>
           </GridContainer>

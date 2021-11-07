@@ -143,19 +143,43 @@ function Chat(props) {
               <GridItem xs={12} className={classes.navWrapper}>
                 <div>
                   <div className="msgs">
-                    {messages.map((item) => (
-                      <div>
-                        <div ref={scroll}></div>
-                        <div
-                          key={id}
-                          className={`msg ${
-                            item.idSender === auth.userId ? "sent" : "received"
-                          }`}
-                        >
-                          <p>{item.text}</p>
-                        </div>
-                      </div>
-                    ))}
+                    {messages &&
+                      messages
+                        /* .filter((el) => el.idSender == id)
+                        .filter((el) => el.idRecever == id) */
+
+                        /* .filter((el) => el.idRecever === auth.userId)
+                        .filter((el) => el.idRecever === id) */
+                        .map((item) => (
+                          <div>
+                            <div ref={scroll}></div>
+                            {item.idSender === auth.userId
+                              ? item.idRecever === id && (
+                                  <div
+                                    key={id}
+                                    className={`msg ${
+                                      item.idSender === auth.userId
+                                        ? "sent"
+                                        : "received"
+                                    }`}
+                                  >
+                                    <p>{item.text}</p>
+                                  </div>
+                                )
+                              : item.idSender === id && (
+                                  <div
+                                    key={id}
+                                    className={`msg ${
+                                      item.idSender === auth.userId
+                                        ? "sent"
+                                        : "received"
+                                    }`}
+                                  >
+                                    <p>{item.text}</p>
+                                  </div>
+                                )}
+                          </div>
+                        ))}
                   </div>
                   <div>
                     <form onSubmit={sendMessage}>
